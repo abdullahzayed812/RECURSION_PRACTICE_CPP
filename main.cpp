@@ -211,11 +211,33 @@ void doSomething(int n) {
 }
 
 // 123456
-void doSomething(int n) {
+void doSomething2(int n) {
   if (n) {
-    doSomething(n / 10);
+    doSomething2(n / 10);
     cout << n % 10 << " ";  // 1 2 3 4 5 6
   }
+}
+
+bool isPrime(int num, int currentTestNum = 3) {
+  if (num == 2) return true;
+
+  if (num <= 1 || num % 2 == 0) return false;
+
+  if (num % currentTestNum == 0) return false;
+
+  if (num == currentTestNum) return true;
+
+  return isPrime(num, currentTestNum + 1);
+}
+
+int countPrimes(int start, int end) {
+  if (start > end) return 0;
+
+  int result = countPrimes(start + 1, end);
+
+  if (isPrime(start)) result += 1;
+
+  return result;
 }
 
 int main() {
@@ -253,7 +275,9 @@ int main() {
 
   // arrAcc(arr, 5);
 
-  doSomething(123456);
+  // doSomething(123456);
+
+  // cout << countPrimes(10, 200);
 
   // print(arr, 5);
 
